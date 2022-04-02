@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ikyou.domain.business.dao.TWkMoreinfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="tWkMoreinfoResultMap" type="cn.ikyou.domain.business.entity.TWkMoreinfo">
+        <id column="id" property="id"/>
+        <result column="wk_id" property="wkId"/>
+        <result column="zy_name" property="zyName"/>
+        <result column="zy_type" property="zyType"/>
+        <result column="length" property="length"/>
+        <result column="height" property="height"/>
+        <result column="wide" property="wide"/>
+        <result column="area" property="area"/>
+        <result column="volume" property="volume"/>
+        <result column="amount" property="amount"/>
+        <result column="location" property="location"/>
+        <result column="location_start" property="locationStart"/>
+        <result column="location_end" property="locationEnd"/>
+        <result column="lane" property="lane"/>
+        <result column="remarks" property="remarks"/>
+        <result column="create_id" property="createId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_id" property="updateId"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="version" property="version"/>
+        <result column="is_del" property="isDel"/>
+    </resultMap>
+
+</mapper>

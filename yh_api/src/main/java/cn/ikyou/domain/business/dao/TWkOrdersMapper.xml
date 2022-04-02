@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ikyou.domain.business.dao.TWkOrdersMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="tWkOrdersResultMap" type="cn.ikyou.domain.business.entity.TWkOrders">
+        <id column="id" property="id"/>
+        <result column="date" property="date"/>
+        <result column="item_one" property="itemOne"/>
+        <result column="work_item" property="workItem"/>
+        <result column="work_gs" property="workGs"/>
+        <result column="work_fx" property="workFx"/>
+        <result column="work_loation_start" property="workLoationStart"/>
+        <result column="work_locaton_end" property="workLocatonEnd"/>
+        <result column="work_carlist" property="workCarlist"/>
+        <result column="work_machinelist" property="workMachinelist"/>
+        <result column="work_user_list" property="workUserList"/>
+        <result column="work_user_other" property="workUserOther"/>
+        <result column="work_before_image" property="workBeforeImage"/>
+        <result column="work_after_image" property="workAfterImage"/>
+        <result column="work_leader_name" property="workLeaderName"/>
+        <result column="work_leader_qm" property="workLeaderQm"/>
+        <result column="status" property="status"/>
+        <result column="org_id" property="orgId"/>
+        <result column="weather" property="weather"/>
+        <result column="temperature" property="temperature"/>
+        <result column="create_id" property="createId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_id" property="updateId"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="version" property="version"/>
+        <result column="is_del" property="isDel"/>
+    </resultMap>
+
+</mapper>

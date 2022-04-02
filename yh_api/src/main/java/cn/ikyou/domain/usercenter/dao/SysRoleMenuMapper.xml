@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ikyou.domain.usercenter.dao.SysRoleMenuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="sysRoleMenuResultMap" type="cn.ikyou.domain.usercenter.entity.SysRoleMenu">
+        <id column="role_id" property="roleId"/>
+        <result column="menu_id" property="menuId"/>
+    </resultMap>
+
+    <!-- 查询角色含有的菜单  -->
+    <resultMap id="roleMenusMap" type="cn.ikyou.domain.usercenter.entity.SysMenu">
+        <id column="menu_id" property="menuId"/>
+        <result column="menu_name" property="menuName"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="app_id" property="appId"/>
+        <result column="order_num" property="orderNum"/>
+        <result column="path" property="path"/>
+        <result column="component" property="component"/>
+        <result column="is_open" property="isOpen"/>
+        <result column="menu_type" property="menuType"/>
+        <result column="visible" property="visible"/>
+        <result column="status" property="status"/>
+        <result column="perms" property="perms"/>
+        <result column="icon" property="icon"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remarks" property="remarks"/>
+        <result column="is_del" property="isDel"/>
+    </resultMap>
+
+
+    <!--
+        角色ID查询
+    -->
+    <select id="selectByRoleId" resultMap="roleMenusMap">
+        select
+			m.menu_id,
+			m.menu_name,
+			m.parent_id,
+			m.order_num,
+			m.app_id,
+			m.perms,
+			m.visible,
+			m.menu_type,
+			m.is_open,
+			m.component,
+			m.path,
+			m.icon
+		from  sys_role_menu rm
+		left join sys_menu m on m.menu_id=rm.menu_id and m.is_del=0 and m.status=0
+        where
+            rm.role_id=#{roleId}
+    </select>
+
+    <!--
+       用户ID查询
+   -->
+    <select id="selectByUserId" resultMap="roleMenusMap">
+        select
+			m.menu_id,
+			m.menu_name,
+			m.parent_id,
+			m.app_id,
+			m.order_num,
+			m.perms,
+			m.visible,
+			m.menu_type,
+			m.is_open,
+			m.component,
+			m.path,
+			m.icon
+		from  sys_user_role ur
+		left join sys_role_menu rm on ur.role_id=rm.role_id
+		left join sys_menu m on m.menu_id=rm.menu_id and m.is_del=0 and m.status=0
+		where
+		    ur.user_id=#{userId}
+    </select>
+
+</mapper>

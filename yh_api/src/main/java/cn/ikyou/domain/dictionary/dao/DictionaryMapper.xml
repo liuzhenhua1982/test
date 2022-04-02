@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ikyou.domain.dictionary.dao.DictionaryMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="dictionaryMap" type="cn.ikyou.domain.dictionary.entity.Dictionary">
+        <id column="id" property="id"/>
+        <result column="pid" property="pId"/>
+        <result column="org_id" property="orgId"/>
+        <result column="type" property="type"/>
+        <result column="name" property="name"/>
+        <result column="code" property="code"/>
+    </resultMap>
+
+</mapper>

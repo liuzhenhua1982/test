@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ikyou.domain.usercenter.dao.SysUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="sysUserResultMap" type="cn.ikyou.domain.usercenter.entity.SysUser">
+        <id column="user_id" property="userId"/>
+        <result column="username" property="username"/>
+        <result column="mobile" property="mobile"/>
+		<result column="name" property="name"/>
+		<result column="user_code" property="userCode"/>
+        <result column="password" property="password"/>
+        <result column="email" property="email"/>
+        <result column="nickname" property="nickname"/>
+        <result column="org_id" property="orgId"/>
+        <result column="status" property="status"/>
+        <result column="is_del" property="isDel"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="version_no" property="versionNo"/>
+        <result column="token" property="token"/>
+        <result column="latitude" property="latitude"/>
+        <result column="longitude" property="longitude"/>
+    </resultMap>
+
+
+    <sql id="details">
+		select
+			u.*,
+			r.role_id,
+			r.role_name,
+			r.role_code,
+			m.menu_id,
+			m.app_id,
+			m.menu_name,
+			m.parent_id,
+			m.order_num,
+			m.perms,
+			m.visible,
+			m.menu_type,
+			m.is_open,
+			m.component,
+			m.path,
+			m.icon
+		from sys_user u
+		left join sys_user_role ur on u.user_id=ur.user_id
+		left join sys_role r on r.role_id=ur.role_id and r.is_del=0 and r.role_status=0
+		left join sys_role_menu rm on rm.role_id=r.role_id
+		left join sys_menu m on m.menu_id=rm.menu_id and m.is_del=0 and m.status=0
+	</sql>
+	<select id="selectOneById" resultMap="sysUserResultMap">
+		select su.* from sys_user su where su.user_id = #{id}
+	</select>
+
+
+
+</mapper>

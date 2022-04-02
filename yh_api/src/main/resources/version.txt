@@ -1,0 +1,2 @@
+增加多环境
+启动脚本：java -jar zlkz.jar --spring.profiles.active=dev

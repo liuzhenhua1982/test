@@ -1,0 +1,51 @@
+server:
+  port: 8888
+spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  datasource:
+    url: jdbc:mysql://127.0.0.1/g_yh?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
+    username: g_user
+    password: 123456
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 20
+      max-lifetime: 30000
+      idle-timeout: 30000
+      auto-commit: true
+      pool-name: DatabookHikariCP
+      connection-test-query: SELECT 1
+      connection-timeout: 30000
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+    parser:
+      #允许出现特殊字符和转义符
+      allow_unquoted_control_chars: true
+      #允许出现单引号
+      allow_single_quotes: true
+    mapper:
+      accept_case_insensitive_properties: true
+    deserialization:
+      #允许对象忽略json中不存在的属性
+      fail_on_unknown_properties: false
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 3600ms
+mybatis:
+  configuration:
+    log-impl:  org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config: #配置逻辑删除
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+storage:
+  minio:
+    endpoint: http://127.0.0.1:9000
+    accesskey: minioadmin
+    secretkey: minioadmin

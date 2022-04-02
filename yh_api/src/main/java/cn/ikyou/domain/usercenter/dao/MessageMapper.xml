@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ikyou.domain.usercenter.dao.MessageMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="messageResultMap" type="cn.ikyou.domain.usercenter.entity.Message">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="user_id" property="userId"/>
+        <result column="info_type" property="infoType"/>
+        <result column="is_read" property="isRead"/>
+        <result column="create_time" property="createTime"/>
+        <result column="read_time" property="readTime"/>
+        <result column="extend_content" property="extendContent"/>
+        <result column="is_del" property="isDel"/>
+        <result column="version" property="version"/>
+    </resultMap>
+
+</mapper>

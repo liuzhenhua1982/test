@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ikyou.domain.common.dao.TAppVersionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="tAppVersionResultMap" type="cn.ikyou.domain.common.entity.TAppVersion">
+        <id column="id" property="id"/>
+        <result column="app_version" property="appVersion"/>
+        <result column="remarks" property="remarks"/>
+        <result column="platform" property="platform"/>
+        <result column="file_type" property="fileType"/>
+        <result column="wgt_name" property="wgtName"/>
+        <result column="app_url" property="appUrl"/>
+        <result column="create_id" property="createId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_id" property="updateId"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="version" property="version"/>
+        <result column="is_del" property="isDel"/>
+    </resultMap>
+
+    <select id="selectAppVersion" resultMap="tAppVersionResultMap">
+        select
+            a.*
+        from t_app_version a
+        where
+            a.platform=#{platform}
+        order by replace(app_version,'.','') desc limit 1
+    </select>
+
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ikyou.domain.usercenter.dao.SysUserRoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="sysUserRoleResultMap" type="cn.ikyou.domain.usercenter.entity.SysUserRole">
+        <id column="user_id" property="userId"/>
+        <result column="role_id" property="roleId"/>
+    </resultMap>
+
+    <!-- 角色 -->
+    <resultMap id="sysRoleResultMap" type="cn.ikyou.domain.usercenter.entity.SysRole">
+        <id column="role_id" property="roleId"/>
+        <result column="role_name" property="roleName"/>
+        <result column="role_code" property="roleCode"/>
+        <result column="role_status" property="roleStatus"/>
+        <result column="is_del" property="isDel"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remarks" property="remarks"/>
+    </resultMap>
+
+    <!--
+        查询用户角色
+    -->
+    <select id="findByUserId" resultMap="sysRoleResultMap">
+        select
+            r.*
+        from sys_user_role ur
+        left join sys_role r on ur.role_id=r.role_id
+        where
+            ur.user_id=#{userId} and
+            r.is_del=0
+    </select>
+
+</mapper>

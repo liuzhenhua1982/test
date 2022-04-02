@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ikyou.domain.usercenter.dao.SysMenuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="sysMenuResultMap" type="cn.ikyou.domain.usercenter.entity.SysMenu">
+        <id column="menu_id" property="menuId"/>
+        <result column="menu_name" property="menuName"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="app_id" property="appId"/>
+        <result column="order_num" property="orderNum"/>
+        <result column="path" property="path"/>
+        <result column="component" property="component"/>
+        <result column="is_open" property="isOpen"/>
+        <result column="menu_type" property="menuType"/>
+        <result column="visible" property="visible"/>
+        <result column="status" property="status"/>
+        <result column="perms" property="perms"/>
+        <result column="icon" property="icon"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remarks" property="remarks"/>
+        <result column="is_del" property="isDel"/>
+    </resultMap>
+
+    <select id="selectMenuByRoleIds" resultType="cn.ikyou.domain.usercenter.dto.MenuDTO">
+        select
+            m.menu_id menuId,
+            m.app_id appId,
+            m.menu_name menuName,
+            m.parent_id parentId,
+            m.order_num orderNum,
+            m.path,
+            m.component,
+            m.icon,
+            m.is_open isOpen,
+            m.menu_type menuType,
+            m.visible,
+            m.`status`,
+            m.remarks
+            from sys_role_menu rm
+        left join sys_menu m on rm.menu_id=m.menu_id and m.is_del=0
+        where
+            rm.role_id in
+            <foreach collection="roleIds" item="roleId" separator="," close=")" open="(" index="">
+                #{roleId,jdbcType=NUMERIC}
+            </foreach>
+        order by m.order_num asc
+    </select>
+
+</mapper>
